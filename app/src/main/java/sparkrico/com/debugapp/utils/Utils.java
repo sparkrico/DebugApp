@@ -1,4 +1,4 @@
-package sparkrico.com.debugapp;
+package sparkrico.com.debugapp.utils;
 
 import android.app.Activity;
 import android.content.Context;
