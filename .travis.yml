@@ -1,11 +1,11 @@
 language: android
 android:
   components:
-  - tools
-  - platform-tools
-  - build-tools-27.0.3
-  - android-27
-  - extra-android-m2repository
+    - tools
+    - platform-tools
+    - build-tools-27.0.3
+    - android-27
+    - extra-android-m2repository
 script:
   - ./gradlew assembleRelease
 before_install:
