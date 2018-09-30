@@ -20,4 +20,6 @@ deploy:
   file: app.apk
   skip_cleanup: true
   on:
-    repo: sparkrico/DebugApp
+    branches:
+      only:
+        -master
