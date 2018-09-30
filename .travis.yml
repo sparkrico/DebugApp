@@ -1,11 +1,30 @@
 language: android
+
+notifications:
+  email: false
+
+sudo: false
+
 android:
   components:
-    - tools
-    - platform-tools
-    - build-tools-27.0.3
-    - android-27
-    - extra-android-m2repository
-
+  - tools
+  - platform-tools
+  - build-tools-27.0.3
+  - android-27
+  - extra-android-m2repository
 script:
-  - ./gradlew
+  - ./gradlew assembleRelease
+before_install:
+  - chmod +x gradlew
+  - openssl aes-256-cbc -K $encrypted_81daa1514254_key -iv $encrypted_81daa1514254_iv
+  -in de_keystore.enc -out de_keystore -d
+before_deploy:
+  - mv app/build/outputs/apk/release/app-release.apk app.apk
+deploy:
+  provider: releases
+  api_key:
+    secure: N+ht7K/UP6ZmYaYrPrL3mImLiV240dshKGRmIWkE0+bZd2wjSvoQBwdi2oR1cK+4OWVPH7LGFwR0a7BnRx3zDGrq/ki1IeOpP6amYZEMHQVHC6MzGCMfRthyxFaVycG39AjVKLsFI4EI7GfjzrakFFBHfvg59ig5P0+30NsPpUUuObEStsTMLw0OU8fFdcEZtq8tN5gnh+g+x2pgePL5qShe9LUh290bCmtYzfESm8NZN2kQA4HoZt/B1JNmc6rxaDCuRh3fzA3+t8sOb2GNVr8amFifdDGMu1HYQRvLNfTODvmP/yKb2C5uajmOC+ZXQB2rRRIbvSib4oIScD7kQ1wTIsSzT/y3mn+JVYIjRmZteNc03jErs6lOIgVmcIZE63SzqEDtH1nOI39d/BdtzG6MetDxMiQdAvShUiNpHNCjzWYTq540jZZJscoCYyFuI3hVRr11Zc7Iw0ktru3VGKsUCIuVvbHWoSCaHP8Du+QR5rBSQzvyyrNDmTa9k7273kdOL8LVHv71KlQnEqlqNdJjaBOyj8VC/BnEmA0GOB8xrMli/ChoC991kUa5UOOR5pVqDbgt0wsmsfKZX+AD+VX4juybevKYyZ2MMnocTKvJd8z0EHc5rd4roesF4bDyiTNj6zjTCPFI93EGbEaX5Tp46vEPEW8kRTcNq7OrN9I=
+  file: app.apk
+  skip_cleanup: true
+  on:
+    repo: sparkrico/DebugApp

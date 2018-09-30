@@ -10,10 +10,22 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        releaseConfig {
+            storeFile file(properties.hasProperty("KEY_STOREFILE") ? properties.getProperty('KEY_STOREFILE') : "de_keystore")
+            storePassword properties.hasProperty("KEYSTORE_PASS") ? properties.getProperty('key.storePassword') : System.getenv("KEYSTORE_PASS")
+            keyAlias properties.hasProperty("KEY_ALIAS") ? properties.getProperty('key.keyAlias') : System.getenv("KEY_ALIAS")
+            keyPassword properties.hasProperty("KEY_PASS") ? properties.getProperty('key.keyPassword') : System.getenv("KEY_PASS")
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }
