@@ -1,10 +1,4 @@
 language: android
-
-notifications:
-  email: false
-
-sudo: false
-
 android:
   components:
   - tools
