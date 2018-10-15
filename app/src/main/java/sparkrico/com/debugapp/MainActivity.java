@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         ShortCutsUtils.setupShortcuts(this);
 
         initViews();
-        
+
         checkPermission();
     }
 
@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         }
         tv.append("\nnotch_height :" + UiCompat.getXiaomiNotchHeightWithResources(this));
         tv.append("\nAbis :" + Utils.getAbis());
+        tv.append("\nExternalStorageDirectory :" + Utils.getExternalStorageDirectory());
+        tv.append("\nExternalStorageDirectory :" + Utils.getExternalStoragePublicDirectory());
+        tv.append("\nDownloadCacheDirectory :" + Utils.getDownloadCacheDirectory());
+        tv.append("\nRootDirectory :" + Utils.getRootDirectory());
+        tv.append("\nDataDirectory :" + Utils.getDataDirectory());
     }
 
     private void copyText() {

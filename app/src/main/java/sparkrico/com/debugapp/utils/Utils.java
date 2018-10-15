@@ -3,6 +3,7 @@ package sparkrico.com.debugapp.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -13,6 +14,22 @@ import java.util.Arrays;
  */
 
 public class Utils {
+
+    public static String getExternalStorageDirectory() {
+        return Environment.getExternalStorageDirectory().getPath();
+    }
+    public static String getExternalStoragePublicDirectory() {
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath();
+    }
+    public static String getDownloadCacheDirectory() {
+        return Environment.getDownloadCacheDirectory().getPath();
+    }
+    public static String getDataDirectory() {
+        return Environment.getDataDirectory().getPath();
+    }
+    public static String getRootDirectory() {
+        return Environment.getRootDirectory().getPath();
+    }
 
     public static String getImeiInfo(Context mContext) {
         TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Activity.TELEPHONY_SERVICE);
