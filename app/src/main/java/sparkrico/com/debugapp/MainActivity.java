@@ -75,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
         tv.append("\nDownloadCacheDirectory :" + Utils.getDownloadCacheDirectory());
         tv.append("\nRootDirectory :" + Utils.getRootDirectory());
         tv.append("\nDataDirectory :" + Utils.getDataDirectory());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            tv.append("\nExternalMediaDirs :" + Utils.getDirectory(this));
+        }
     }
 
     private void copyText() {
